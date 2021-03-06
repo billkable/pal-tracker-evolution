@@ -118,7 +118,7 @@ But not a long term solution.
 
 There are options to consider:
 
-### Increase available Registration server threads
+### Increase available registration app capacity
 
 This requires adding instances of the registration
 server,
@@ -127,7 +127,7 @@ which costs more hardware resources available on
 the platform,
 which means higher cost for same number of users.
 
-### Reduce number of work on the registration server
+### Reduce amount of work on the registration app
 
 Are all of the calls between the Backlog server to the
 Registration server necessary?
@@ -137,13 +137,17 @@ creation of the project,
 and are only deactivated after a project is closed.
 
 Realtime access to the project state is likely not
-necessary.
+necessary,
+and using alternate architecture that accomodate
+*eventual consistency* may be acceptable.
 
 Potential solutions to consider:
 
 1.  Provide a "project status" services whose sole
     purpose is to provide the project state as a
     backing service (perhaps a cache).
+    The cache state must still be populated from
+    the registration app.
 
 1.  Add project status state persistence in the
     Backlog server (an aggregate root),
